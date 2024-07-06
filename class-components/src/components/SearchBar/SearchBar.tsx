@@ -7,7 +7,28 @@ interface ISearchBarProps {
   updateSearchValue: (value: string) => void;
 }
 
-export default class SearchBar extends Component<ISearchBarProps> {
+interface IState {
+  error: boolean;
+}
+
+export default class SearchBar extends Component<ISearchBarProps, IState> {
+  constructor(props: ISearchBarProps) {
+    super(props);
+    this.state = {
+      error: false
+    };
+  }
+  
+  handleClick = () => {
+    this.setState({ error: true });
+  }
+
+  componentDidUpdate = () => {
+    if (this.state.error) {
+      throw new Error('Oops, something went wrong!');
+    }
+  }
+
   handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { updateSearchValue } = this.props;
     updateSearchValue(event.target.value);
@@ -34,7 +55,7 @@ export default class SearchBar extends Component<ISearchBarProps> {
               Search
             </button>
           </div>
-          <button className={styles.btn}>Get an error!</button>
+          <button className={styles.btn} onClick={this.handleClick}>Get an error!</button>
         </div>
       </>
     );
