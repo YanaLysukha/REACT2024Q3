@@ -25,7 +25,7 @@ export default class ErrorBoundary extends Component<IProps, IState> {
 
   render(): ReactNode {
     if (this.state.error) {
-        return <h1 className={styles.title}>Something went wrong...</h1>;
+      return <h1 className={styles.title}>Something went wrong...</h1>;
     }
     return this.props.children;
   }

@@ -1,32 +1,16 @@
 import { ChangeEvent, Component, ReactNode } from 'react';
 import logoIcon from '../../assets/images/LOTR-icon.svg';
 import styles from './style.module.css';
+import ErrorButton from '../ErrorButton/ErrorButton';
 
 interface ISearchBarProps {
   onSearch: (searchValue: string) => Promise<void>;
   updateSearchValue: (value: string) => void;
 }
 
-interface IState {
-  error: boolean;
-}
-
-export default class SearchBar extends Component<ISearchBarProps, IState> {
+export default class SearchBar extends Component<ISearchBarProps> {
   constructor(props: ISearchBarProps) {
     super(props);
-    this.state = {
-      error: false
-    };
-  }
-  
-  handleClick = () => {
-    this.setState({ error: true });
-  }
-
-  componentDidUpdate = () => {
-    if (this.state.error) {
-      throw new Error('Oops, something went wrong!');
-    }
   }
 
   handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +39,7 @@ export default class SearchBar extends Component<ISearchBarProps, IState> {
               Search
             </button>
           </div>
-          <button className={styles.btn} onClick={this.handleClick}>Get an error!</button>
+          <ErrorButton></ErrorButton>
         </div>
       </>
     );
