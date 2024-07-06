@@ -38,12 +38,14 @@
   outline: none;
   background-color: transparent;
   color: rgb(233, 202, 164);
+  font-family: 'Ringbearer Medium';
   box-sizing: content-box;
   letter-spacing: 1.5px;
 }
 
 .input::placeholder {
   color: rgb(233, 202, 164);
+  font-family: 'Ringbearer Medium';
 }
 
 .btn {
@@ -53,6 +55,7 @@
   border: none;
   margin-left: 10px;
   background-color: rgb(233, 202, 164);
+  font-family: 'Ringbearer Medium';
   transition: all 0.4s;
 
   cursor: pointer;
