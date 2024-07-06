@@ -27,9 +27,7 @@ export default class SearchBar extends Component<ISearchBarProps> {
               onChange={this.handleChange}
             ></input>
           </div>
-          <button 
-            className={styles.btn}
-            onClick={() => this.props.onSearch(searchValue)}>
+          <button className={styles.btn} onClick={() => this.props.onSearch(searchValue)}>
             Search
           </button>
         </div>

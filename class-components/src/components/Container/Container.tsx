@@ -2,6 +2,7 @@ import { Component, ReactNode } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import ListView from '../ListView/ListView';
 import { getAllCharacters, getSearchedCharacters, ICharacter } from '../../getCharacters';
+import Loader from '../Loader/Loader';
 
 interface IState {
   characters: ICharacter[];
@@ -50,6 +51,7 @@ export default class Container extends Component<Record<string, never>, IState> 
           searchValue={searchValue}
           updateSearchValue={this.updateSearchValue}
         ></SearchBar>
+        <Loader></Loader>
         <ListView characters={characters}></ListView>
       </>
     );
