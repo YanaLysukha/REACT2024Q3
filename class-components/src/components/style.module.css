@@ -1,0 +1,57 @@
+.container {
+  background-image: url('../assets/images/Lord-of-the-Rings-One-Ring.avif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  max-width: 100%;
+  height: 55vh;
+  padding: 8px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  gap: 45px;
+  justify-content: center;
+  width: 450px;
+  margin-left: 40px;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 13px 12px;
+  border-radius: 30px;
+  border: 1px solid rgb(233, 202, 164);
+  outline: none;
+  background-color: transparent;
+  color: rgb(233, 202, 164);
+  box-sizing: content-box;
+  letter-spacing: 1.5px;
+}
+
+.input::placeholder {
+  color: rgb(233, 202, 164);
+}
+
+.btn {
+  color: rgb(18, 9, 6);
+  border-radius: 30px;
+  padding: 13px;
+  border: none;
+  margin-left: 10px;
+  background-color: rgb(233, 202, 164);
+  transition: all 0.4s;
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0px 0px 10px 2px rgba(237, 158, 97, 1);
+}
