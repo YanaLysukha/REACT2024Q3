@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import ListView from '../ListView/ListView';
-import { ICharacter } from '../../getCharacters';
+import { getAllCharacters, ICharacter } from '../../getCharacters';
 
 interface IState {
   characters: ICharacter[];
@@ -15,11 +15,21 @@ export default class Container extends Component<Record<string, never>, IState> 
     };
   }
 
+  async componentDidMount() {
+    this.fetchCharacters();
+  }
+
+  fetchCharacters = async () => {
+    const allCharacters = await getAllCharacters();
+    this.setState({ characters: allCharacters });
+  };
+
   render(): ReactNode {
+    const { characters } = this.state;
     return (
       <>
         <SearchBar></SearchBar>
-        <ListView></ListView>
+        <ListView characters={characters}></ListView>
       </>
     );
   }

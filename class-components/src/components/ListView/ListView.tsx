@@ -1,12 +1,15 @@
 import { Component, ReactNode } from 'react';
-import { getAllCharacters } from '../../getCharacters';
+import { ICharacter } from '../../getCharacters';
 import ListItem from '../ListItem/ListItem';
 import styles from './style.module.css';
 
-const characters = await getAllCharacters();
+interface ListViewProps {
+  characters: ICharacter[];
+}
 
-export default class ListView extends Component {
+export default class ListView extends Component<ListViewProps> {
   render(): ReactNode {
+    const { characters } = this.props;
     return (
       <div className={styles.container}>
         {characters.map((character) => (
