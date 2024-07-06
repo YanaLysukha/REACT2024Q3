@@ -1,5 +1,6 @@
-import { Component, ReactNode } from "react";
-import { ICharacter } from "../../getCharacters";
+import { Component, ReactNode } from 'react';
+import { ICharacter } from '../../getCharacters';
+import styles from './style.module.css';
 
 interface CharacterProps {
   character: ICharacter;
@@ -10,12 +11,13 @@ export default class ListItem extends Component<CharacterProps> {
     const { character } = this.props;
 
     return (
-      <div>
-        <h1>{character.name}</h1>
-        <p>Wiki: <a href={character.wikiUrl}>{character.wikiUrl}</a></p>
+      <div className={styles.wrapper}>
+        <h1 className={styles.title}>{character.name}</h1>
         <p>Race: {character.race}</p>
         <p>Gender: {character.gender}</p>
         <p>Spouse: {character.spouse}</p>
+        <p>Birth: {character.birth}</p>
+        <p>Death: {character.death}</p>
       </div>
     );
   }

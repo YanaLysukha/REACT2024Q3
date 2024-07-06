@@ -5,7 +5,9 @@ import ListView from './components/ListView/ListView';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
-root.render(<>
+root.render(
+  <>
     <SearchBar></SearchBar>
     <ListView></ListView>
-</>);
+  </>,
+);
