@@ -1,24 +1,38 @@
-import { Component, ReactNode } from 'react';
+import { ChangeEvent, Component, ReactNode } from 'react';
 import styles from './style.module.css';
 
-export default class SearchBar extends Component {
+interface ISearchBarProps {
+  onSearch: (searchValue: string) => Promise<void>;
+  searchValue: string;
+  updateSearchValue: (value: string) => void;
+}
+
+export default class SearchBar extends Component<ISearchBarProps> {
+  handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { updateSearchValue } = this.props;
+    updateSearchValue(event.target.value);
+  };
+
   render(): ReactNode {
-    const searchValue = localStorage.getItem('value') ?? '';
+    const { searchValue } = this.props;
     return (
       <div className={styles.container}>
-        <form className={styles.form}>
+        <div className={styles.form}>
           <div className={styles.wrapper}>
             <input
               type="text"
               className={styles.input}
               placeholder="Find your favorite character..."
               value={searchValue}
+              onChange={this.handleChange}
             ></input>
           </div>
-          <button className={styles.btn} onClick={() => console.log('search')}>
+          <button 
+            className={styles.btn}
+            onClick={() => this.props.onSearch(searchValue)}>
             Search
           </button>
-        </form>
+        </div>
       </div>
     );
   }

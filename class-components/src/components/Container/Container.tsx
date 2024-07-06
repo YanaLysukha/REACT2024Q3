@@ -1,10 +1,11 @@
 import { Component, ReactNode } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import ListView from '../ListView/ListView';
-import { getAllCharacters, ICharacter } from '../../getCharacters';
+import { getAllCharacters, getSearchedCharacters, ICharacter } from '../../getCharacters';
 
 interface IState {
   characters: ICharacter[];
+  searchValue: string;
 }
 
 export default class Container extends Component<Record<string, never>, IState> {
@@ -12,12 +13,28 @@ export default class Container extends Component<Record<string, never>, IState> 
     super(props);
     this.state = {
       characters: [],
+      searchValue: '',
     };
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     this.fetchCharacters();
-  }
+  };
+
+  updateSearchValueInLS = (value: string) => {
+    localStorage.setItem('name', value);
+  };
+
+  updateSearchValue = (value: string) => {
+    this.setState({ searchValue: value });
+  };
+
+  handleSearchCharacters = async (value: string) => {
+    // this.updateSearchValueInLS(searchValue);
+    this.setState({ searchValue: value });
+    const searchedCharacters = await getSearchedCharacters(value);
+    this.setState({ characters: searchedCharacters });
+  };
 
   fetchCharacters = async () => {
     const allCharacters = await getAllCharacters();
@@ -25,10 +42,14 @@ export default class Container extends Component<Record<string, never>, IState> 
   };
 
   render(): ReactNode {
-    const { characters } = this.state;
+    const { characters, searchValue } = this.state;
     return (
       <>
-        <SearchBar></SearchBar>
+        <SearchBar
+          onSearch={() => this.handleSearchCharacters(searchValue)}
+          searchValue={searchValue}
+          updateSearchValue={this.updateSearchValue}
+        ></SearchBar>
         <ListView characters={characters}></ListView>
       </>
     );
