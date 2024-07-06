@@ -20,28 +20,27 @@ export default class Container extends Component<Record<string, never>, IState> 
 
   componentDidMount = async () => {
     const value = localStorage.getItem('value');
-        if (value) {
-            this.handleSearchCharacters(value);
-        } else {
-            this.fetchCharacters();
-        }
+    if (value) {
+      this.handleCharacters(value);
+    } else {
+      this.handleCharacters();
+    }
   };
 
   updateSearchValueInLS = (value: string) => {
     localStorage.setItem('value', value);
   };
 
-  handleSearchCharacters = async (value: string) => {
-    this.setState({ isLoaded: false });
-    const searchedCharacters = await getSearchedCharacters(value);
-    this.setState({ characters: searchedCharacters, isLoaded: true });
-    this.updateSearchValueInLS(value);
-  };
-
-  fetchCharacters = async () => {
-    this.setState({ isLoaded: false });
-    const allCharacters = await getAllCharacters();
-    this.setState({ characters: allCharacters, isLoaded: true });
+  handleCharacters = async (value: string = '') => {
+    const trimmedValue = value.trim();
+    if (trimmedValue.length === 0) {
+      const allCharacters = await getAllCharacters();
+      this.setState({ characters: allCharacters, isLoaded: true });
+    } else {
+      const searchedCharacters = await getSearchedCharacters(trimmedValue);
+      this.setState({ characters: searchedCharacters, isLoaded: true });
+      this.updateSearchValueInLS(trimmedValue);
+    }
   };
 
   render(): ReactNode {
@@ -49,7 +48,7 @@ export default class Container extends Component<Record<string, never>, IState> 
     return (
       <>
         <SearchBar
-          onSearch={() => this.handleSearchCharacters(localStorage.getItem('value') ?? '')}
+          onSearch={() => this.handleCharacters(localStorage.getItem('value') ?? '')}
           updateSearchValue={this.updateSearchValueInLS}
         ></SearchBar>
         {isLoaded ? <ListView characters={characters}></ListView> : <Loader></Loader>}

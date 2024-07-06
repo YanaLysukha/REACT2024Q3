@@ -26,7 +26,7 @@ export default class SearchBar extends Component<ISearchBarProps> {
                 type="text"
                 className={styles.input}
                 placeholder="Find your favorite character..."
-                defaultValue={searchValue}
+                defaultValue={searchValue.trim()}
                 onChange={this.handleChange}
               ></input>
             </div>
