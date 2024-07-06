@@ -34,6 +34,7 @@ export default class SearchBar extends Component<ISearchBarProps> {
               Search
             </button>
           </div>
+          <button className={styles.btn}>Get an error!</button>
         </div>
       </>
     );

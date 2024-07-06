@@ -57,6 +57,7 @@
   background-color: rgb(233, 202, 164);
   font-family: 'Ringbearer Medium';
   transition: all 0.4s;
+  margin-left: 10px;
 
   cursor: pointer;
 }

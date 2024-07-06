@@ -5,4 +5,8 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
-root.render(<ErrorBoundary><Container></Container></ErrorBoundary>);
+root.render(
+  <ErrorBoundary>
+    <Container></Container>
+  </ErrorBoundary>,
+);
