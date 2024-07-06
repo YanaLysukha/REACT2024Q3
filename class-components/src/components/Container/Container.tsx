@@ -7,6 +7,7 @@ import Loader from '../Loader/Loader';
 interface IState {
   characters: ICharacter[];
   searchValue: string;
+  isLoaded: boolean;
 }
 
 export default class Container extends Component<Record<string, never>, IState> {
@@ -15,6 +16,7 @@ export default class Container extends Component<Record<string, never>, IState> 
     this.state = {
       characters: [],
       searchValue: '',
+      isLoaded: false,
     };
   }
 
@@ -31,19 +33,19 @@ export default class Container extends Component<Record<string, never>, IState> 
   };
 
   handleSearchCharacters = async (value: string) => {
-    // this.updateSearchValueInLS(searchValue);
-    this.setState({ searchValue: value });
+    this.setState({ searchValue: value, isLoaded: false });
     const searchedCharacters = await getSearchedCharacters(value);
-    this.setState({ characters: searchedCharacters });
+    this.setState({ characters: searchedCharacters, isLoaded: true });
   };
 
   fetchCharacters = async () => {
+    this.setState({ isLoaded: false });
     const allCharacters = await getAllCharacters();
-    this.setState({ characters: allCharacters });
+    this.setState({ characters: allCharacters, isLoaded: true });
   };
 
   render(): ReactNode {
-    const { characters, searchValue } = this.state;
+    const { characters, searchValue, isLoaded } = this.state;
     return (
       <>
         <SearchBar
@@ -51,8 +53,7 @@ export default class Container extends Component<Record<string, never>, IState> 
           searchValue={searchValue}
           updateSearchValue={this.updateSearchValue}
         ></SearchBar>
-        <Loader></Loader>
-        <ListView characters={characters}></ListView>
+        {isLoaded ? (<ListView characters={characters}></ListView>) : (<Loader></Loader>)}
       </>
     );
   }
