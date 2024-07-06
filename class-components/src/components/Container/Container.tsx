@@ -6,7 +6,6 @@ import Loader from '../Loader/Loader';
 
 interface IState {
   characters: ICharacter[];
-  searchValue: string;
   isLoaded: boolean;
 }
 
@@ -15,27 +14,28 @@ export default class Container extends Component<Record<string, never>, IState> 
     super(props);
     this.state = {
       characters: [],
-      searchValue: '',
       isLoaded: false,
     };
   }
 
   componentDidMount = async () => {
-    this.fetchCharacters();
+    const value = localStorage.getItem('value');
+        if (value) {
+            this.handleSearchCharacters(value);
+        } else {
+            this.fetchCharacters();
+        }
   };
 
   updateSearchValueInLS = (value: string) => {
-    localStorage.setItem('name', value);
-  };
-
-  updateSearchValue = (value: string) => {
-    this.setState({ searchValue: value });
+    localStorage.setItem('value', value);
   };
 
   handleSearchCharacters = async (value: string) => {
-    this.setState({ searchValue: value, isLoaded: false });
+    this.setState({ isLoaded: false });
     const searchedCharacters = await getSearchedCharacters(value);
     this.setState({ characters: searchedCharacters, isLoaded: true });
+    this.updateSearchValueInLS(value);
   };
 
   fetchCharacters = async () => {
@@ -45,15 +45,14 @@ export default class Container extends Component<Record<string, never>, IState> 
   };
 
   render(): ReactNode {
-    const { characters, searchValue, isLoaded } = this.state;
+    const { characters, isLoaded } = this.state;
     return (
       <>
         <SearchBar
-          onSearch={() => this.handleSearchCharacters(searchValue)}
-          searchValue={searchValue}
-          updateSearchValue={this.updateSearchValue}
+          onSearch={() => this.handleSearchCharacters(localStorage.getItem('value') ?? '')}
+          updateSearchValue={this.updateSearchValueInLS}
         ></SearchBar>
-        {isLoaded ? (<ListView characters={characters}></ListView>) : (<Loader></Loader>)}
+        {isLoaded ? <ListView characters={characters}></ListView> : <Loader></Loader>}
       </>
     );
   }

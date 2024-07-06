@@ -4,7 +4,6 @@ import styles from './style.module.css';
 
 interface ISearchBarProps {
   onSearch: (searchValue: string) => Promise<void>;
-  searchValue: string;
   updateSearchValue: (value: string) => void;
 }
 
@@ -15,7 +14,8 @@ export default class SearchBar extends Component<ISearchBarProps> {
   };
 
   render(): ReactNode {
-    const { searchValue } = this.props;
+    const searchValue = localStorage.getItem('value') ?? '';
+    console.log(searchValue);
     return (
       <>
         <img src={logoIcon} className={styles.logo}></img>
@@ -26,7 +26,7 @@ export default class SearchBar extends Component<ISearchBarProps> {
                 type="text"
                 className={styles.input}
                 placeholder="Find your favorite character..."
-                value={searchValue}
+                defaultValue={searchValue}
                 onChange={this.handleChange}
               ></input>
             </div>
