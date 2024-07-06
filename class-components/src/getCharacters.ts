@@ -14,7 +14,7 @@ export interface ICharacter {
   spouse: string;
 }
 
-export default async function getAllCharacters(): Promise<ICharacter[]> {
+export async function getAllCharacters(): Promise<ICharacter[]> {
   const response = await fetch(baseURL, {
     headers: {
       Authorization: 'Bearer Ic5iqi0En-5oQyBlk-oH',
@@ -22,4 +22,15 @@ export default async function getAllCharacters(): Promise<ICharacter[]> {
   });
   const characters: Promise<ICharacter[]> = (await response.json()).docs;
   return characters;
+}
+
+export async function getSearchedCharacters(searchValue: string): Promise<ICharacter[]> {
+  const searchURL = `${baseURL}?name=/${searchValue}/i`;
+  const response = await fetch(searchURL, {
+    headers: {
+      Authorization: 'Bearer Ic5iqi0En-5oQyBlk-oH',
+    },
+  });
+  const searchResult: Promise<ICharacter[]> = (await response.json()).docs;
+  return searchResult;
 }
