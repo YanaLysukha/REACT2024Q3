@@ -32,6 +32,7 @@ export default class Container extends Component<Record<string, never>, IState> 
   };
 
   handleCharacters = async (value: string = '') => {
+    this.setState({ isLoaded: false });
     const trimmedValue = value.trim();
     if (trimmedValue.length === 0) {
       const allCharacters = await getAllCharacters();
