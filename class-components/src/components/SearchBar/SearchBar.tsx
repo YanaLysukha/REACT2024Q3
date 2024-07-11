@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import logoIcon from '../../assets/images/LOTR-icon.svg';
 import styles from './style.module.css';
-import ErrorButton from '../ErrorButton/ErrorButton';
 
 interface ISearchBarProps {
   onSearch: (searchValue: string) => Promise<void>;
@@ -43,7 +42,6 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onSearch, updateSearchValue }) =
             Search
           </button>
         </div>
-        <ErrorButton></ErrorButton>
       </div>
     </>
   );
