@@ -3,6 +3,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import ListView from '../ListView/ListView';
 import { getAllCharacters, getSearchedCharacters, ICharacter } from '../../getCharacters';
 import Loader from '../Loader/Loader';
+import Footer from '../Footer/Footer';
 
 const Container: React.FC = () => {
   const [characters, setCharacters] = useState<ICharacter[]>([]);
@@ -40,8 +41,9 @@ const Container: React.FC = () => {
         updateSearchValue={updateSearchValueInLS}
       ></SearchBar>
       {loader ? <ListView characters={characters}></ListView> : <Loader></Loader>}
+      <Footer></Footer>
     </>
   );
-}
+};
 
 export default Container;
