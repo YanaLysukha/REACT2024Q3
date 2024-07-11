@@ -1,12 +1,10 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Container from './components/Container/Container';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import App from './App';
+import React from 'react';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-
-root.render(
-  <ErrorBoundary>
-    <Container></Container>
-  </ErrorBoundary>,
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 );
