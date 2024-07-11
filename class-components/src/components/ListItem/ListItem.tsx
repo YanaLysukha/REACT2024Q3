@@ -16,6 +16,6 @@ const ListItem: React.FC<CharacterProps> = ({ character }) => {
       <p>Death: {character.death}</p>
     </div>
   );
-}
+};
 
 export default ListItem;
