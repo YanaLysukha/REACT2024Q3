@@ -1,3 +1,5 @@
+import styles from './style.module.css';
+
 interface IPaginationProps {
   currentPage: number;
   totalPages: number;
@@ -8,7 +10,7 @@ const Pagination: React.FC<IPaginationProps> = ({ currentPage, totalPages, onPag
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
         {'<'}
       </button>

@@ -14,9 +14,14 @@ export interface ICharacter {
   spouse: string;
 }
 
-export async function getCharacters(searchValue: string = '', page: number = 1): Promise<ICharacter[]> {
-  const url = searchValue ? `${baseURL}?name=/${searchValue}/i`: `${baseURL}?limit=100&page=${page}`;
-  
+export async function getCharacters(
+  searchValue: string = '',
+  page: number = 1,
+): Promise<ICharacter[]> {
+  const url = searchValue
+    ? `${baseURL}?name=/${searchValue}/i`
+    : `${baseURL}?limit=100&page=${page}`;
+
   const response = await fetch(url, {
     headers: {
       Authorization: 'Bearer Ic5iqi0En-5oQyBlk-oH',

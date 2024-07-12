@@ -20,12 +20,12 @@ const Container: React.FC = () => {
     async (value: string = '') => {
       setLoader(false);
       const trimmedValue = value.trim();
-      const characters = await getCharacters(trimmedValue);
+      const characters = await getCharacters(trimmedValue, currentPage);
       setCharacters(characters);
       updateSearchValueInLS(trimmedValue);
       setLoader(true);
     },
-    [updateSearchValueInLS],
+    [updateSearchValueInLS, currentPage],
   );
 
   useEffect(() => {
