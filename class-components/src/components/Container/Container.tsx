@@ -4,6 +4,7 @@ import ListView from '../ListView/ListView';
 import { getCharacters, ICharacter } from '../../getCharacters';
 import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
+import { Outlet } from 'react-router-dom';
 
 const TOTAL_PAGES = 10;
 
@@ -40,22 +41,27 @@ const Container: React.FC = () => {
 
   return (
     <>
-      <SearchBar
-        onSearch={() => handleCharacters(localStorage.getItem('value') ?? '')}
-        updateSearchValue={updateSearchValueInLS}
-      ></SearchBar>
-      {loader ? (
-        <>
-          <ListView characters={characters}></ListView>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={TOTAL_PAGES}
-            onPageChange={handlePageChange}
-          ></Pagination>
-        </>
-      ) : (
-        <Loader></Loader>
-      )}
+      <div id="main">
+        <SearchBar
+          onSearch={() => handleCharacters(localStorage.getItem('value') ?? '')}
+          updateSearchValue={updateSearchValueInLS}
+        ></SearchBar>
+        {loader ? (
+          <>
+            <ListView characters={characters}></ListView>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={TOTAL_PAGES}
+              onPageChange={handlePageChange}
+            ></Pagination>
+          </>
+        ) : (
+          <Loader></Loader>
+        )}
+      </div>
+      <div id="detail">
+        <Outlet />
+      </div>
     </>
   );
 };
