@@ -4,14 +4,15 @@ import ListView from '../ListView/ListView';
 import { getCharacters, ICharacter } from '../../getCharacters';
 import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 
 const TOTAL_PAGES = 10;
 
 const Container: React.FC = () => {
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
   const updateSearchValueInLS = useCallback((value: string) => {
     localStorage.setItem('value', value);
@@ -35,7 +36,7 @@ const Container: React.FC = () => {
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= TOTAL_PAGES) {
-      setCurrentPage(page);
+      setSearchParams({ page: page.toString() });
     }
   };
 
