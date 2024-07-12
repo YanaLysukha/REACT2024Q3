@@ -5,11 +5,11 @@
 }
 
 .button {
-  font-family: 'Ringbearer Medium';
-  font-size: 1.2rem;
+  font-family: 'Trajan Pro Bold';
+  font-size: 1rem;
   background-color: rgb(28, 21, 19);
   color: rgb(233, 202, 164);
-  padding: 6px 9px;
+  padding: 9px;
   width: 40px;
   border-radius: 5px;
   border: 1px solid rgb(233, 202, 164);
@@ -22,12 +22,12 @@
 
 @media (max-width: 600px) {
   .button {
-    width: 30px;
-    font-size: 1rem;
-    padding: 5px 8px;
+    width: 32px;
+    font-size: 0.9rem;
+    padding: 7px;
   }
   .wrapper {
     margin: 15px;
-    gap: 4px;
+    gap: 5px;
   }
 }
