@@ -14,24 +14,14 @@ export interface ICharacter {
   spouse: string;
 }
 
-export async function getAllCharacters(): Promise<ICharacter[]> {
-  const firstPageURL = `${baseURL}?limit=100&page=1`;
-  const response = await fetch(firstPageURL, {
+export async function getCharacters(searchValue: string = '', page: number = 1): Promise<ICharacter[]> {
+  const url = searchValue ? `${baseURL}?name=/${searchValue}/i`: `${baseURL}?limit=100&page=${page}`;
+  
+  const response = await fetch(url, {
     headers: {
       Authorization: 'Bearer Ic5iqi0En-5oQyBlk-oH',
     },
   });
   const characters: Promise<ICharacter[]> = (await response.json()).docs;
   return characters;
-}
-
-export async function getSearchedCharacters(searchValue: string): Promise<ICharacter[]> {
-  const searchURL = `${baseURL}?name=/${searchValue}/i`;
-  const response = await fetch(searchURL, {
-    headers: {
-      Authorization: 'Bearer Ic5iqi0En-5oQyBlk-oH',
-    },
-  });
-  const searchResult: Promise<ICharacter[]> = (await response.json()).docs;
-  return searchResult;
 }
