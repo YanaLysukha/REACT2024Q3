@@ -6,6 +6,7 @@ import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
+// TODO: it shouldn't be a constant!
 const TOTAL_PAGES = 10;
 
 const Container: React.FC = () => {
@@ -13,6 +14,7 @@ const Container: React.FC = () => {
   const [loader, setLoader] = useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const currentDetailId = searchParams.get('detailId');
 
   const updateSearchValueInLS = useCallback((value: string) => {
     localStorage.setItem('value', value);
@@ -36,7 +38,11 @@ const Container: React.FC = () => {
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= TOTAL_PAGES) {
-      setSearchParams({ page: page.toString() });
+      if (currentDetailId !== null) {
+        setSearchParams({ page: page.toString(), detailId: currentDetailId });
+      } else {
+        setSearchParams({ page: page.toString() });
+      }
     }
   };
 
@@ -61,6 +67,7 @@ const Container: React.FC = () => {
         )}
       </div>
       <div id="detail">
+        <div>{currentDetailId}</div>
         <Outlet />
       </div>
     </>
