@@ -1,4 +1,4 @@
-import { ICharacter } from "../../getCharacters";
+import { ICharacter } from '../../getCharacters';
 import styles from './style.module.css';
 
 interface ICharacterProps {
@@ -6,7 +6,7 @@ interface ICharacterProps {
 }
 
 const Details: React.FC<ICharacterProps> = ({ character }) => {
-  console.log("rerender");
+  console.log('rerender');
   return (
     <>
       <div className={styles.container}>
@@ -21,7 +21,7 @@ const Details: React.FC<ICharacterProps> = ({ character }) => {
         </div>
       </div>
     </>
-  )
+  );
 };
 
 export default Details;

@@ -11,7 +11,11 @@ const ListView: React.FC<ListViewProps> = ({ characters, handleCharacter }) => {
   return (
     <div className={styles.container}>
       {characters.map((character) => (
-        <ListItem character={character} key={character._id} handleCharacter={handleCharacter}></ListItem>
+        <ListItem
+          character={character}
+          key={character._id}
+          handleCharacter={handleCharacter}
+        ></ListItem>
       ))}
     </div>
   );

@@ -17,7 +17,7 @@ const Container: React.FC = () => {
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const currentDetailId = searchParams.get('detailId');
   const [currentCharacter, setCurrentCharacter] = useState<ICharacter>({} as ICharacter);
- 
+
   const updateSearchValueInLS = useCallback((value: string) => {
     localStorage.setItem('value', value);
   }, []);
@@ -25,9 +25,9 @@ const Container: React.FC = () => {
   const handleCharacter = async (detailId: string) => {
     const character = await getCharacterById(detailId);
     setCurrentCharacter(character);
-    console.log("character from API " + character.name);
-    console.log("char from state " + currentCharacter.name);
-  }
+    console.log('character from API ' + character.name);
+    console.log('char from state ' + currentCharacter.name);
+  };
 
   const handleCharacters = useCallback(
     async (value: string = '') => {

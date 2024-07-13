@@ -1,19 +1,19 @@
 .container {
-    background-image: url('../../assets/images/details-background.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    padding: 50px;
-    height: 50vh;
-    font-family: 'EB Garamond', serif;
-    font-weight: 500;
-    color: rgb(28, 21, 19);
-    font-size: 1.5rem;
+  background-image: url('../../assets/images/details-background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  padding: 50px;
+  height: 50vh;
+  font-family: 'EB Garamond', serif;
+  font-weight: 500;
+  color: rgb(28, 21, 19);
+  font-size: 1.5rem;
 }
 
 .title {
-    font-family: 'Trajan Pro Bold';
-    color: #937043;
-    font-size: 2rem;
+  font-family: 'Trajan Pro Bold';
+  color: #937043;
+  font-size: 2rem;
 }
