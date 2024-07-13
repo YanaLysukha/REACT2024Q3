@@ -6,6 +6,7 @@ import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import Details from '../Details/Details';
+import styles from './style.module.css';
 
 // TODO: it shouldn't be a constant!
 const TOTAL_PAGES = 10;
@@ -54,8 +55,8 @@ const Container: React.FC = () => {
   };
 
   return (
-    <>
-      <div id="main">
+    <div className={currentCharacter ? styles.split : ''}>
+      <div className={styles.left}>
         <SearchBar
           onSearch={() => handleCharacters(localStorage.getItem('value') ?? '')}
           updateSearchValue={updateSearchValueInLS}
@@ -73,8 +74,12 @@ const Container: React.FC = () => {
           <Loader></Loader>
         )}
       </div>
-      {Object.keys(currentCharacter).length > 0 && <Details character={currentCharacter} />}
-    </>
+      {Object.keys(currentCharacter).length > 0 && (
+        <div className={styles.right}>
+          <Details character={currentCharacter} />
+        </div>
+      )}
+    </div>
   );
 };
 

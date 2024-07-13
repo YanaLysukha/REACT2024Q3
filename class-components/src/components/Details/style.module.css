@@ -3,13 +3,22 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: 100%;
   padding: 50px;
-  height: 50vh;
+  height: 100vh;
   font-family: 'EB Garamond', serif;
   font-weight: 500;
   color: rgb(28, 21, 19);
   font-size: 1.5rem;
+
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  border-left: 1px solid rgb(233, 202, 164);
+  transition: all 0.3s ease;
 }
 
 .title {
