@@ -30,3 +30,14 @@ export async function getCharacters(
   const characters: Promise<ICharacter[]> = (await response.json()).docs;
   return characters;
 }
+
+export async function getCharacterById(characterId: string) {
+  const url = `${baseURL}/${characterId}`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: 'Bearer Ic5iqi0En-5oQyBlk-oH',
+    },
+  });
+  const character: Promise<ICharacter> = (await response.json()).docs[0];
+  return character;
+}

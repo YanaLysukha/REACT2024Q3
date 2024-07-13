@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import ListView from '../ListView/ListView';
-import { getCharacters, ICharacter } from '../../getCharacters';
+import { getCharacterById, getCharacters, ICharacter } from '../../getCharacters';
 import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import Details from '../Details/Details';
 
 // TODO: it shouldn't be a constant!
 const TOTAL_PAGES = 10;
@@ -15,10 +16,18 @@ const Container: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const currentDetailId = searchParams.get('detailId');
-
+  const [currentCharacter, setCurrentCharacter] = useState<ICharacter>({} as ICharacter);
+ 
   const updateSearchValueInLS = useCallback((value: string) => {
     localStorage.setItem('value', value);
   }, []);
+
+  const handleCharacter = async (detailId: string) => {
+    const character = await getCharacterById(detailId);
+    setCurrentCharacter(character);
+    console.log("character from API " + character.name);
+    console.log("char from state " + currentCharacter.name);
+  }
 
   const handleCharacters = useCallback(
     async (value: string = '') => {
@@ -55,7 +64,7 @@ const Container: React.FC = () => {
         ></SearchBar>
         {loader ? (
           <>
-            <ListView characters={characters}></ListView>
+            <ListView characters={characters} handleCharacter={handleCharacter}></ListView>
             <Pagination
               currentPage={currentPage}
               totalPages={TOTAL_PAGES}
@@ -66,10 +75,7 @@ const Container: React.FC = () => {
           <Loader></Loader>
         )}
       </div>
-      <div id="detail">
-        <div>{currentDetailId}</div>
-        <Outlet />
-      </div>
+      {Object.keys(currentCharacter).length > 0 && <Details character={currentCharacter} />}
     </>
   );
 };
