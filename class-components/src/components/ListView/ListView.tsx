@@ -13,7 +13,7 @@ const ListView: React.FC<ListViewProps> = ({ characters, handleCharacter }) => {
   }
 
   return (
-    <div role='item' className={styles.container}>
+    <div role="item" className={styles.container}>
       {characters.map((character) => (
         <ListItem
           character={character}

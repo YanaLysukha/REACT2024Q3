@@ -27,32 +27,4 @@
 .split .right {
   flex: 1;
   display: block;
-
-  /* position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-  overflow-y: auto;
-  box-sizing: border-box;
-  border-left: 1px solid #ccc;
-  background-color: #fff;
-  transition: all 0.3s ease; */
 }
-
-/* Main.module.css */
-/* .split {
-  display: flex;
-  position: relative;
-  height: 100vh;
-} */
-
-/* .left {
-  flex: 1;
-  overflow-y: auto;
-  box-sizing: border-box;
-} */
-
-/* .hidden {
-  display: none;
-} */

@@ -22,6 +22,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
-  },
+  }
   // "include": ["src", "tests/components/Component.test.tsx"]
 }
