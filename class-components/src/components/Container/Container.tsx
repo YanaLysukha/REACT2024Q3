@@ -54,6 +54,10 @@ const Container: React.FC = () => {
     }
   };
 
+  const handleCharacterDeletion = () => {
+    setCurrentCharacter({} as ICharacter);
+  }
+
   return (
     <div className={currentCharacter ? styles.split : ''}>
       <div className={styles.left}>
@@ -76,7 +80,7 @@ const Container: React.FC = () => {
       </div>
       {Object.keys(currentCharacter).length > 0 && (
         <div className={styles.right}>
-          <Details character={currentCharacter} />
+          <Details character={currentCharacter} handleCharacterDeletion={handleCharacterDeletion} />
         </div>
       )}
     </div>
