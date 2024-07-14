@@ -11,7 +11,7 @@ export interface ICharacter {
   hair: string | null;
   height: string | null;
   realm: string | null;
-  spouse: string;
+  spouse: string | null;
 }
 
 export async function getCharacters(

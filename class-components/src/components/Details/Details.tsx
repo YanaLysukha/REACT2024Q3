@@ -6,7 +6,6 @@ interface ICharacterProps {
 }
 
 const Details: React.FC<ICharacterProps> = ({ character }) => {
-  console.log('rerender');
   return (
     <>
       <div className={styles.container}>

@@ -8,8 +8,12 @@ interface ListViewProps {
 }
 
 const ListView: React.FC<ListViewProps> = ({ characters, handleCharacter }) => {
+  if (characters.length === 0) {
+    return <p className={styles.container}>No characters available</p>;
+  }
+
   return (
-    <div className={styles.container}>
+    <div role='item' className={styles.container}>
       {characters.map((character) => (
         <ListItem
           character={character}
