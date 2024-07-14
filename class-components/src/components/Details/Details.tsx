@@ -10,7 +10,9 @@ const Details: React.FC<ICharacterProps> = ({ character, handleCharacterDeletion
   return (
     <>
       <div className={styles.container}>
-        <button className={styles.button} onClick={handleCharacterDeletion}>Close</button>
+        <button className={styles.button} onClick={handleCharacterDeletion}>
+          Close
+        </button>
         <div className={styles.wrapper}>
           <h2 className={styles.title}>{character.name}</h2>
           <p>Race: {character.race}</p>
