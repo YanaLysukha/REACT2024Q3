@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
-import SearchBar from '../SearchBar/SearchBar';
-import ListView from '../ListView/ListView';
-import { getCharacterById, getCharacters, ICharacter } from '../../getCharacters';
-import Loader from '../Loader/Loader';
-import Pagination from '../Pagination/Pagination';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import ListView from '../../components/ListView/ListView';
+import { getCharacterById, getCharacters, ICharacter } from '../../services/getCharacters';
+import Loader from '../../components/Loader/Loader';
+import Pagination from '../../components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
-import Details from '../Details/Details';
+import Details from '../../components/Details/Details';
 import styles from './style.module.css';
 
-// TODO: it shouldn't be a constant!
 const TOTAL_PAGES = 10;
 
 const Container: React.FC = () => {

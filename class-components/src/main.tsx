@@ -3,7 +3,7 @@ import './index.css';
 import App from './App';
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ErrorPage from './pages/ErrorPage';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {

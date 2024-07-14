@@ -1,4 +1,4 @@
-import { ICharacter } from '../../getCharacters';
+import { ICharacter } from '../../services/getCharacters';
 import styles from './style.module.css';
 
 interface ICharacterProps {

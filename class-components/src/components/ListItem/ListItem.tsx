@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { ICharacter } from '../../getCharacters';
+import { ICharacter } from '../../services/getCharacters';
 import styles from './style.module.css';
 
 interface CharacterProps {
@@ -8,7 +8,6 @@ interface CharacterProps {
 }
 
 const ListItem: React.FC<CharacterProps> = ({ character, handleCharacter }) => {
-  // TODO: research about updateSearchParams
   const [searchParams, setSearchParams] = useSearchParams();
   const handleDetailsChange = async (detailId: string) => {
     setSearchParams({ page: searchParams.get('page') || '1', detailId });
