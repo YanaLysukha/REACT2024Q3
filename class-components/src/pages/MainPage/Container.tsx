@@ -36,10 +36,10 @@ const MainPage: React.FC = () => {
     } else {
       setCharacters(null);
     }
-    
+
     updateSearchValueInLS(trimmedValue);
     setLoader(true);
-  }
+  };
 
   useEffect(() => {
     handleCharacters(localStorage.getItem('value') ?? '');
