@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import ListView from '../../components/ListView/ListView';
 import { getCharacterById, getCharacters, ICharacter } from '../../services/getCharacters';
@@ -10,38 +10,41 @@ import styles from './style.module.css';
 
 const TOTAL_PAGES = 10;
 
-const Container: React.FC = () => {
-  const [characters, setCharacters] = useState<ICharacter[]>([]);
+const MainPage: React.FC = () => {
+  const [characters, setCharacters] = useState<ICharacter[] | null>([]);
   const [loader, setLoader] = useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const currentDetailId = searchParams.get('detailId');
   const [currentCharacter, setCurrentCharacter] = useState<ICharacter>({} as ICharacter);
 
-  const updateSearchValueInLS = useCallback((value: string) => {
+  const updateSearchValueInLS = (value: string) => {
     localStorage.setItem('value', value);
-  }, []);
+  };
 
   const handleCharacter = async (detailId: string) => {
     const character = await getCharacterById(detailId);
     setCurrentCharacter(character);
   };
 
-  const handleCharacters = useCallback(
-    async (value: string = '') => {
-      setLoader(false);
-      const trimmedValue = value.trim();
-      const characters = await getCharacters(trimmedValue, currentPage);
+  const handleCharacters = async (value: string = '') => {
+    setLoader(false);
+    const trimmedValue = value.trim();
+    const characters = await getCharacters(trimmedValue, currentPage);
+    if (characters !== null) {
       setCharacters(characters);
-      updateSearchValueInLS(trimmedValue);
-      setLoader(true);
-    },
-    [updateSearchValueInLS, currentPage],
-  );
+    } else {
+      setCharacters(null);
+    }
+    
+    updateSearchValueInLS(trimmedValue);
+    setLoader(true);
+  }
 
   useEffect(() => {
     handleCharacters(localStorage.getItem('value') ?? '');
-  }, [handleCharacters]);
+  }, [searchParams]);
+  // add current page later
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= TOTAL_PAGES) {
@@ -66,7 +69,7 @@ const Container: React.FC = () => {
         ></SearchBar>
         {loader ? (
           <>
-            <ListView characters={characters} handleCharacter={handleCharacter}></ListView>
+            <ListView characters={characters ?? []} handleCharacter={handleCharacter}></ListView>
             <Pagination
               currentPage={currentPage}
               totalPages={TOTAL_PAGES}
@@ -89,4 +92,4 @@ const Container: React.FC = () => {
   );
 };
 
-export default Container;
+export default MainPage;
