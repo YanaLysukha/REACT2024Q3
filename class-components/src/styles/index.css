@@ -6,7 +6,7 @@
   font-weight: normal;
   src:
     local('Ringbearer Medium'),
-    url('./assets/fonts/RINGM___.woff') format('woff');
+    url('../assets/fonts/RINGM___.woff') format('woff');
 }
 
 * {
