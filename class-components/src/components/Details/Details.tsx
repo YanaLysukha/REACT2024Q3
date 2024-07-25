@@ -17,7 +17,7 @@ const Details = () => {
       console.error(error);
       setCharacter(null);
     }
-  }
+  };
 
   useEffect(() => {
     getCharacter();

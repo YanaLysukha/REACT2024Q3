@@ -81,7 +81,7 @@ const MainPage: React.FC = () => {
       </div>
       {Object.keys(currentCharacter).length > 0 && (
         <div className={styles.right}>
-          <Details/>
+          <Details />
         </div>
       )}
     </div>

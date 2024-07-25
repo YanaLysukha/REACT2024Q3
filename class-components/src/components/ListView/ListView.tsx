@@ -7,7 +7,7 @@ interface ListViewProps {
   handleCharacter: (detailId: string) => Promise<void>;
 }
 
-const ListView: React.FC<ListViewProps> = ({ characters, handleCharacter }) => {
+const ListView: React.FC<ListViewProps> = ({ characters }) => {
   if (characters.length === 0) {
     return <p className={styles.container}>No characters available</p>;
   }
@@ -15,11 +15,7 @@ const ListView: React.FC<ListViewProps> = ({ characters, handleCharacter }) => {
   return (
     <div role="item" className={styles.container}>
       {characters.map((character) => (
-        <ListItem
-          character={character}
-          key={character._id}
-          handleCharacter={handleCharacter}
-        ></ListItem>
+        <ListItem character={character} key={character._id}></ListItem>
       ))}
     </div>
   );
