@@ -5,3 +5,12 @@
   gap: 30px;
   padding: 40px;
 }
+
+.text {
+  font-size: 1.3rem;
+  font-family: 'Ringbearer Medium';
+  letter-spacing: 0.4px;
+  margin: 90px 0;
+  width: 50%;
+  text-align: center;
+}

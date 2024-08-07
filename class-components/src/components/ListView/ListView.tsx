@@ -8,7 +8,7 @@ interface ListViewProps {
 
 const ListView: React.FC<ListViewProps> = ({ characters }) => {
   if (characters.length === 0) {
-    return <p className={styles.container}>No characters available</p>;
+    return <p className={styles.text}>Our story has hit a small snag, and the characters you seek are momentarily out of reach...</p>;
   }
 
   return (

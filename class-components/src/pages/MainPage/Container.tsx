@@ -53,11 +53,7 @@ const MainPage: React.FC = () => {
           {!loader ? (
             <>
               <ListView characters={characters ?? []}></ListView>
-              {!search.includes('search') ? (
-                <Pagination></Pagination>
-              ) : (
-                <div></div>
-              )}
+              {!search.includes('search') ? <Pagination></Pagination> : <div></div>}
             </>
           ) : (
             <Loader></Loader>
