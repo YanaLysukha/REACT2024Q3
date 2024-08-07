@@ -6,7 +6,6 @@ interface CharacterProps {
 }
 
 const ListItem: React.FC<CharacterProps> = ({ character }) => {
-
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{character.name}</h1>

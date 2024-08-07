@@ -1,19 +1,27 @@
+import { useMemo } from 'react';
 import styles from './style.module.css';
+import { useNavigateMethods } from '../../hooks/useNavigateMethods';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-interface IPaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-}
+const TOTAL_PAGES = 10;
 
-const Pagination: React.FC<IPaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+const Pagination: React.FC = () => {
+  const pages = Array.from({ length: TOTAL_PAGES }, (_, i) => i + 1);
+
+  const { getPageValue } = useNavigateMethods();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const currentPage = useMemo(() => getPageValue(), [getPageValue]);
+
+  const handlePageChange = (page: number) => {
+    navigate(`${pathname}?page=${page}`);
+  };
 
   return (
     <div className={styles.wrapper}>
       <button
         className={styles.button}
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
         {'<'}
@@ -22,7 +30,7 @@ const Pagination: React.FC<IPaginationProps> = ({ currentPage, totalPages, onPag
         <button
           className={styles.button}
           key={page}
-          onClick={() => onPageChange(page)}
+          onClick={() => handlePageChange(page)}
           disabled={page === currentPage}
         >
           {page}
@@ -30,8 +38,8 @@ const Pagination: React.FC<IPaginationProps> = ({ currentPage, totalPages, onPag
       ))}
       <button
         className={styles.button}
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === TOTAL_PAGES}
       >
         {'>'}
       </button>

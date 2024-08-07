@@ -1,22 +1,19 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import ListView from '../../components/ListView/ListView';
 import { getCharacters, ICharacter } from '../../services/getCharacters';
 import Loader from '../../components/Loader/Loader';
 import Pagination from '../../components/Pagination/Pagination';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import styles from './style.module.css';
-
-const TOTAL_PAGES = 10;
+import { useNavigateMethods } from '../../hooks/useNavigateMethods';
 
 const MainPage: React.FC = () => {
-  // const { getPageValue } = useNavigateMethods();
+  const { getPageValue } = useNavigateMethods();
   const [characters, setCharacters] = useState<ICharacter[] | null>([]);
   const [loader, setLoader] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
-  const { pathname, search } = useLocation();
-  // const currentPage = useMemo(() => getPageValue(), [getPageValue]);
+  const { search } = useLocation();
+  const currentPage = useMemo(() => getPageValue(), [getPageValue]);
 
   const updateSearchValueInLS = (value: string) => {
     localStorage.setItem('value', value);
@@ -45,11 +42,6 @@ const MainPage: React.FC = () => {
     fetchData(localStorage.getItem('value') ?? '');
   }, [fetchData, search]);
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    navigate(`${pathname}?page=${page}`);
-  };
-
   return (
     <div className={''}>
       <div className={styles.left}>
@@ -62,11 +54,7 @@ const MainPage: React.FC = () => {
             <>
               <ListView characters={characters ?? []}></ListView>
               {!search.includes('search') ? (
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={TOTAL_PAGES}
-                  onPageChange={handlePageChange}
-                ></Pagination>
+                <Pagination></Pagination>
               ) : (
                 <div></div>
               )}
