@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import logoIcon from '../../assets/images/LOTR-icon.svg';
 import styles from './style.module.css';
+import { useNavigate } from 'react-router-dom';
 
 interface ISearchBarProps {
   onSearch: (searchValue: string) => Promise<void>;
@@ -11,6 +12,7 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onSearch, updateSearchValue }) =
   const [searchValue, setSearchValue] = useState<string>(
     () => localStorage.getItem('value') ?? '',
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     updateSearchValue(searchValue);
@@ -20,15 +22,17 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onSearch, updateSearchValue }) =
     setSearchValue(event.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     onSearch(searchValue);
+    navigate(`/?page=1${searchValue && '&search=' + searchValue}`);
   };
 
   return (
     <>
       <img src={logoIcon} className={styles.logo}></img>
       <div className={styles.container}>
-        <div className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.wrapper}>
             <input
               type="text"
@@ -38,10 +42,10 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onSearch, updateSearchValue }) =
               onChange={handleChange}
             ></input>
           </div>
-          <button className={styles.btn} onClick={handleSearch}>
+          <button className={styles.btn}>
             Search
           </button>
-        </div>
+        </form>
       </div>
     </>
   );

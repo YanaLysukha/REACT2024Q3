@@ -34,14 +34,16 @@ const MainPage: React.FC = () => {
         if (characters) setCharacters(characters);
         updateSearchValueInLS(value.trim());
         setLoader(true);
+
+        console.log(search)
       } catch (error) {
         console.error(error);
         setCharacters(null);
         setLoader(false);
       }
     },
-    [getCharacters, currentPage]
-  )
+    [getCharacters, currentPage],
+  );
 
   useEffect(() => {
     fetchData(localStorage.getItem('value') ?? '');
@@ -59,18 +61,20 @@ const MainPage: React.FC = () => {
           onSearch={() => fetchData(localStorage.getItem('value') ?? '')}
           updateSearchValue={updateSearchValueInLS}
         ></SearchBar>
-        {loader ? (
-          <>
-            <ListView characters={characters ?? []}></ListView>
-            <Pagination
-              currentPage={currentPage}
-              totalPages={TOTAL_PAGES}
-              onPageChange={handlePageChange}
-            ></Pagination>
-          </>
-        ) : (
-          <Loader></Loader>
-        )}
+        <div className={styles.listwrapper}>
+          {loader ? (
+            <>
+              <ListView characters={characters ?? []}></ListView>
+              {!search.includes('search') ? <Pagination
+                currentPage={currentPage}
+                totalPages={TOTAL_PAGES}
+                onPageChange={handlePageChange}
+              ></Pagination> : ''}
+            </>
+          ) : (
+            <Loader></Loader>
+          )}
+        </div>
       </div>
       <Outlet></Outlet>
     </div>
