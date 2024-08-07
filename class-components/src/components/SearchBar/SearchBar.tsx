@@ -42,9 +42,7 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onSearch, updateSearchValue }) =
               onChange={handleChange}
             ></input>
           </div>
-          <button className={styles.btn}>
-            Search
-          </button>
+          <button className={styles.btn}>Search</button>
         </form>
       </div>
     </>

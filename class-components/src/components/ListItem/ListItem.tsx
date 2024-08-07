@@ -1,4 +1,3 @@
-// import { useSearchParams } from 'react-router-dom';
 import { ICharacter } from '../../services/getCharacters';
 import styles from './style.module.css';
 
@@ -7,7 +6,6 @@ interface CharacterProps {
 }
 
 const ListItem: React.FC<CharacterProps> = ({ character }) => {
-  // const [searchParams] = useSearchParams();
 
   return (
     <div className={styles.wrapper}>

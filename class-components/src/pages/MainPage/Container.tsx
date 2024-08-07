@@ -10,32 +10,27 @@ import styles from './style.module.css';
 const TOTAL_PAGES = 10;
 
 const MainPage: React.FC = () => {
+  // const { getPageValue } = useNavigateMethods();
   const [characters, setCharacters] = useState<ICharacter[] | null>([]);
   const [loader, setLoader] = useState<boolean>(false);
-  // const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const { pathname, search } = useLocation();
+  // const currentPage = useMemo(() => getPageValue(), [getPageValue]);
 
   const updateSearchValueInLS = (value: string) => {
     localStorage.setItem('value', value);
   };
 
-  // const handleCharacter = async (detailId: string) => {
-  //   const character = await getCharacterById(detailId);
-  //   console.log(character);
-  // };
-
   const fetchData = useCallback(
     async (value: string = '') => {
       try {
-        setLoader(false);
         const characters = await getCharacters(value.trim(), currentPage);
-        if (characters) setCharacters(characters);
-        updateSearchValueInLS(value.trim());
-        setLoader(true);
-
-        console.log(search)
+        if (characters) {
+          setCharacters(characters);
+          updateSearchValueInLS(value.trim());
+          setLoader(false);
+        }
       } catch (error) {
         console.error(error);
         setCharacters(null);
@@ -46,8 +41,9 @@ const MainPage: React.FC = () => {
   );
 
   useEffect(() => {
+    setLoader(true);
     fetchData(localStorage.getItem('value') ?? '');
-  }, [currentPage, search]);
+  }, [fetchData, search]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -62,14 +58,18 @@ const MainPage: React.FC = () => {
           updateSearchValue={updateSearchValueInLS}
         ></SearchBar>
         <div className={styles.listwrapper}>
-          {loader ? (
+          {!loader ? (
             <>
               <ListView characters={characters ?? []}></ListView>
-              {!search.includes('search') ? <Pagination
-                currentPage={currentPage}
-                totalPages={TOTAL_PAGES}
-                onPageChange={handlePageChange}
-              ></Pagination> : ''}
+              {!search.includes('search') ? (
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={TOTAL_PAGES}
+                  onPageChange={handlePageChange}
+                ></Pagination>
+              ) : (
+                <div></div>
+              )}
             </>
           ) : (
             <Loader></Loader>
