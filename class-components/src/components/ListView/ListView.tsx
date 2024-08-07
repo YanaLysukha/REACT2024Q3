@@ -4,7 +4,6 @@ import styles from './style.module.css';
 
 interface ListViewProps {
   characters: ICharacter[];
-  handleCharacter: (detailId: string) => Promise<void>;
 }
 
 const ListView: React.FC<ListViewProps> = ({ characters }) => {
