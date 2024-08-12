@@ -1,4 +1,4 @@
-import MainPage from './pages/MainPage/Container';
+import MainPage from './pages/MainPage/MainPage';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 export default function App() {
