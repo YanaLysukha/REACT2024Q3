@@ -17,5 +17,5 @@ describe('ListView', () => {
 
     const list = screen.getByRole('item');
     expect(list).toBeInTheDocument();
-  })
+  });
 });
