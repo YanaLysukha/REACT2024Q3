@@ -36,11 +36,21 @@ const Details = () => {
         </button>
         <div className={styles.wrapper}>
           <h2 className={styles.title}>{character?.name}</h2>
-          <p><span className={styles.highlighted}>Race:</span> {character?.race}</p>
-          <p><span className={styles.highlighted}>Gender:</span> {character?.gender}</p>
-          <p><span className={styles.highlighted}>Spouse:</span> {character?.spouse}</p>
-          <p><span className={styles.highlighted}>Birth:</span> {character?.birth}</p>
-          <p><span className={styles.highlighted}>Death:</span> {character?.death}</p>
+          <p>
+            <span className={styles.highlighted}>Race:</span> {character?.race}
+          </p>
+          <p>
+            <span className={styles.highlighted}>Gender:</span> {character?.gender}
+          </p>
+          <p>
+            <span className={styles.highlighted}>Spouse:</span> {character?.spouse}
+          </p>
+          <p>
+            <span className={styles.highlighted}>Birth:</span> {character?.birth}
+          </p>
+          <p>
+            <span className={styles.highlighted}>Death:</span> {character?.death}
+          </p>
         </div>
       </div>
     </div>
