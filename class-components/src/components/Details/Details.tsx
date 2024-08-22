@@ -22,7 +22,7 @@ const Details = () => {
 
   const handleClose = () => {
     navigate('/');
-  }
+  };
 
   useEffect(() => {
     getCharacterDetails();
@@ -31,18 +31,18 @@ const Details = () => {
   return (
     <div className={styles.detailsWrapper}>
       <div className={styles.container}>
-      <button className={styles.button} onClick={handleClose}>
-        Close
-      </button>
-      <div className={styles.wrapper}>
-        <h2 className={styles.title}>{character?.name}</h2>
-        <p>Race: {character?.race}</p>
-        <p>Gender: {character?.gender}</p>
-        <p>Spouse: {character?.spouse}</p>
-        <p>Birth: {character?.birth}</p>
-        <p>Death: {character?.death}</p>
+        <button className={styles.button} onClick={handleClose}>
+          Close
+        </button>
+        <div className={styles.wrapper}>
+          <h2 className={styles.title}>{character?.name}</h2>
+          <p><span className={styles.highlighted}>Race:</span> {character?.race}</p>
+          <p><span className={styles.highlighted}>Gender:</span> {character?.gender}</p>
+          <p><span className={styles.highlighted}>Spouse:</span> {character?.spouse}</p>
+          <p><span className={styles.highlighted}>Birth:</span> {character?.birth}</p>
+          <p><span className={styles.highlighted}>Death:</span> {character?.death}</p>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

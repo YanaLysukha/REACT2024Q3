@@ -7,16 +7,16 @@ import { mockCharacters } from '../mocks';
 import { getCharacters } from '../../src/services/getCharacters';
 
 vi.mock('../../src/services/getCharacters', () => ({
-    getCharacters: vi.fn(),
+  getCharacters: vi.fn(),
 }));
 
 describe('Main page', () => {
   it('should render loading state initially', () => {
     render(
-        <MemoryRouter>
-            <MainPage></MainPage>
-        </MemoryRouter>
-    )
+      <MemoryRouter>
+        <MainPage></MainPage>
+      </MemoryRouter>,
+    );
 
     const loader = screen.getByAltText('loader image');
     expect(loader).toBeInTheDocument();
@@ -26,10 +26,10 @@ describe('Main page', () => {
     vi.fn().mockResolvedValueOnce(mockCharacters);
 
     render(
-        <MemoryRouter>
-            <MainPage></MainPage>
-        </MemoryRouter>
-    )
+      <MemoryRouter>
+        <MainPage></MainPage>
+      </MemoryRouter>,
+    );
 
     await waitFor(() => {
       expect(getCharacters).toHaveBeenCalled();

@@ -10,7 +10,7 @@ const ListItem: React.FC<CharacterProps> = ({ character }) => {
   const navigate = useNavigate();
   const handleCharacterClick = () => {
     navigate(`/${character._id}`);
-  }
+  };
 
   return (
     <div className={styles.wrapper} onClick={handleCharacterClick}>
