@@ -43,13 +43,13 @@ const MainPage: React.FC = () => {
   }, [fetchData, search]);
 
   return (
-    <div className={''}>
-      <div className={styles.left}>
+    <div className={styles.container}>
+      <div className={styles.charactersBlock}>
         <SearchBar
           onSearch={() => fetchData(localStorage.getItem('value') ?? '')}
           updateSearchValue={updateSearchValueInLS}
         ></SearchBar>
-        <div className={styles.listwrapper}>
+        <div className={styles.listWrapper}>
           {!loader ? (
             <>
               <ListView characters={characters ?? []}></ListView>

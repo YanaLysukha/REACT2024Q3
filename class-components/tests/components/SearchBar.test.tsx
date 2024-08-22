@@ -22,10 +22,12 @@ describe('Search bar component', () => {
     render(
       <BrowserRouter>
         <SearchBar onSearch={mockOnSearch} updateSearchValue={mockUpdateSearchValue}></SearchBar>
-      </BrowserRouter>
-    )
+      </BrowserRouter>,
+    );
 
-    const inputElement = screen.getByPlaceholderText('Find your favorite character...') as HTMLInputElement;
+    const inputElement = screen.getByPlaceholderText(
+      'Find your favorite character...',
+    ) as HTMLInputElement;
     expect(inputElement.value).toBe('test value');
   });
 });

@@ -32,7 +32,7 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onSearch, updateSearchValue }) =
     <>
       <img src={logoIcon} className={styles.logo}></img>
       <div className={styles.container}>
-        <form aria-label='form' className={styles.form} onSubmit={handleSubmit}>
+        <form aria-label="form" className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.wrapper}>
             <input
               type="text"
