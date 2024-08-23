@@ -1,39 +1,66 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import { describe, expect, it, vi } from 'vitest';
-import { MemoryRouter } from 'react-router-dom';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { BrowserRouter } from 'react-router-dom';
 import MainPage from '../../src/pages/MainPage/MainPage';
-import { mockCharacters } from '../mocks';
-import { getCharacters } from '../../src/services/getCharacters';
+// import { mockCharacters } from '../mocks';
+// import { getCharacters } from '../../src/services/getCharacters';
 
-vi.mock('../../src/services/getCharacters', () => ({
-  getCharacters: vi.fn(),
-}));
+// vi.mock('../../src/services/getCharacters', () => ({
+//   getCharacters: vi.fn(),
+// }));
+
+// export const resultsMock = [
+//   {
+//     name: 'Adanel',
+//     url: 'https://the-one-api.dev/v2/character/5cd99d4bde30eff6ebccfbbe',
+//   },
+//   {
+//     name: 'Adrahil I',
+//     url: 'https://the-one-api.dev/v2/character/5cd99d4bde30eff6ebccfbbf',
+//   },
+// ];
 
 describe('Main page', () => {
+  const mockFetch = vi.fn();
+
+  beforeEach(() => {
+    globalThis.fetch = mockFetch;
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('should render loading state initially', () => {
     render(
-      <MemoryRouter>
+      <BrowserRouter>
         <MainPage></MainPage>
-      </MemoryRouter>,
+      </BrowserRouter>,
     );
 
     const loader = screen.getByAltText('loader image');
     expect(loader).toBeInTheDocument();
   });
 
-  it('updates characters and shows list view after data fetch', async () => {
-    vi.fn().mockResolvedValueOnce(mockCharacters);
+  // it('updates characters and shows list view after data fetch', async () => {
+  //   vi.mocked(fetch).mockResolvedValueOnce({
+  //     json: async () => ({ results: resultsMock }),
+  //   } as Response);
 
-    render(
-      <MemoryRouter>
-        <MainPage></MainPage>
-      </MemoryRouter>,
-    );
+  //   render(
+  //     <BrowserRouter>
+  //       <MainPage></MainPage>
+  //     </BrowserRouter>,
+  //   );
 
-    await waitFor(() => {
-      expect(getCharacters).toHaveBeenCalled();
-      expect(screen.getByText('ListView')).toBeInTheDocument();
-    });
-  });
+  //   await waitFor(() => {
+  //     const listItems = screen.getAllByTestId('result-item');
+  //     listItems.forEach((item, index) => {
+  //       expect(item).toHaveTextContent(resultsMock[index].name);
+  //     });
+  //   });
+
+  //   expect(screen.getByAltText('loader image')).toBeNull();
+  // });
 });

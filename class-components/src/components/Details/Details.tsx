@@ -3,12 +3,14 @@ import { getCharacterById, ICharacter } from '../../services/getCharacters';
 import styles from './style.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNavigateMethods } from '../../hooks/useNavigateMethods';
+import Loader from '../Loader/Loader';
 
 const Details = () => {
   const [character, setCharacter] = useState<ICharacter | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const { itemId } = useParams<{ itemId: string }>();
   const navigate = useNavigate();
-  const {getPageValue, createSearchParams} = useNavigateMethods();
+  const { getPageValue, createSearchParams } = useNavigateMethods();
 
   const getCharacterDetails = async () => {
     try {
@@ -20,6 +22,7 @@ const Details = () => {
       console.error(error);
       setCharacter(null);
     }
+    setIsLoaded(true);
   };
 
   const handleClose = () => {
@@ -27,34 +30,39 @@ const Details = () => {
   };
 
   useEffect(() => {
+    setIsLoaded(false);
     getCharacterDetails();
   }, [itemId]);
 
   return (
     <div className={styles.detailsWrapper}>
-      <div className={styles.container}>
-        <button className={styles.button} onClick={handleClose}>
-          Close
-        </button>
-        <div className={styles.wrapper}>
-          <h2 className={styles.title}>{character?.name}</h2>
-          <p>
-            <span className={styles.highlighted}>Race:</span> {character?.race}
-          </p>
-          <p>
-            <span className={styles.highlighted}>Gender:</span> {character?.gender}
-          </p>
-          <p>
-            <span className={styles.highlighted}>Spouse:</span> {character?.spouse}
-          </p>
-          <p>
-            <span className={styles.highlighted}>Birth:</span> {character?.birth}
-          </p>
-          <p>
-            <span className={styles.highlighted}>Death:</span> {character?.death}
-          </p>
+      {!isLoaded ? (
+        <Loader></Loader>
+      ) : (
+        <div className={styles.container}>
+          <button className={styles.button} onClick={handleClose}>
+            Close
+          </button>
+          <div className={styles.wrapper}>
+            <h2 className={styles.title}>{character?.name}</h2>
+            <p>
+              <span className={styles.highlighted}>Race:</span> {character?.race}
+            </p>
+            <p>
+              <span className={styles.highlighted}>Gender:</span> {character?.gender}
+            </p>
+            <p>
+              <span className={styles.highlighted}>Spouse:</span> {character?.spouse}
+            </p>
+            <p>
+              <span className={styles.highlighted}>Birth:</span> {character?.birth}
+            </p>
+            <p>
+              <span className={styles.highlighted}>Death:</span> {character?.death}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
