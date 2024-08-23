@@ -10,7 +10,7 @@
   background-color: rgb(28, 21, 19);
   color: rgb(233, 202, 164);
   padding: 9px;
-  width: 40px;
+  max-width: 40px;
   border-radius: 5px;
   border: 1px solid rgb(233, 202, 164);
   cursor: pointer;
@@ -20,11 +20,11 @@
   background-color: rgb(49, 44, 43);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .button {
-    width: 32px;
+    max-width: 32px;
     font-size: 0.9rem;
-    padding: 7px;
+    padding: 6px;
   }
   .wrapper {
     margin: 15px;
