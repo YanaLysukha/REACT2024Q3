@@ -35,9 +35,9 @@ const Details = () => {
   }, [itemId]);
 
   return (
-    <div className={styles.detailsWrapper}>
+    <div className={styles.detailsWrapper} data-testid="details-component">
       {!isLoaded ? (
-        <Loader></Loader>
+        <Loader data-testid="detailed-loader"></Loader>
       ) : (
         <div className={styles.container}>
           <button className={styles.button} onClick={handleClose}>

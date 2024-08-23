@@ -44,7 +44,7 @@ const MainPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.charactersBlock}>
+      <div className={styles.charactersBlock} data-testid="main-component">
         <SearchBar
           onSearch={() => fetchData(localStorage.getItem('value') ?? '')}
           updateSearchValue={updateSearchValueInLS}
