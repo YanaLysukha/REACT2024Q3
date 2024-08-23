@@ -6,13 +6,13 @@ export function useNavigateMethods() {
 
   const getPageValue = useCallback(() => Number(searchParams.get('page') || 1), [searchParams]);
 
-  // const createSearchParams = (page: number = 1) => {
-  //   const newSearchParams = new URLSearchParams(searchParams);
-  //   if (page) {
-  //     newSearchParams.set('page', page.toString());
-  //   }
-  //   return newSearchParams.toString();
-  // };
+  const createSearchParams = (page: number = 1) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (page) {
+      newSearchParams.set('page', page.toString());
+    }
+    return newSearchParams.toString();
+  };
 
-  return { getPageValue };
+  return { getPageValue, createSearchParams };
 }

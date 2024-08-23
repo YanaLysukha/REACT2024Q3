@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { getCharacterById, ICharacter } from '../../services/getCharacters';
 import styles from './style.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigateMethods } from '../../hooks/useNavigateMethods';
 
 const Details = () => {
   const [character, setCharacter] = useState<ICharacter | null>(null);
   const { itemId } = useParams<{ itemId: string }>();
   const navigate = useNavigate();
+  const {getPageValue, createSearchParams} = useNavigateMethods();
 
   const getCharacterDetails = async () => {
     try {
@@ -21,7 +23,7 @@ const Details = () => {
   };
 
   const handleClose = () => {
-    navigate('/');
+    navigate(`/?${createSearchParams(getPageValue())}`);
   };
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ICharacter } from '../../services/getCharacters';
 import styles from './style.module.css';
+import { useNavigateMethods } from '../../hooks/useNavigateMethods';
 
 interface CharacterProps {
   character: ICharacter;
@@ -8,8 +9,9 @@ interface CharacterProps {
 
 const ListItem: React.FC<CharacterProps> = ({ character }) => {
   const navigate = useNavigate();
+  const {getPageValue, createSearchParams} = useNavigateMethods();
   const handleCharacterClick = () => {
-    navigate(`/${character._id}`);
+    navigate(`/item/${character._id}?${createSearchParams(getPageValue())}`);
   };
 
   return (

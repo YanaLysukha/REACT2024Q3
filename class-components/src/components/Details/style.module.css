@@ -23,7 +23,7 @@
   box-sizing: border-box;
   border: 2px solid rgb(233, 202, 164);
   border-radius: 30px;
-  transform: scale(1.0);
+  transform: scale(1);
   transition: all 0.4s ease;
 }
 
