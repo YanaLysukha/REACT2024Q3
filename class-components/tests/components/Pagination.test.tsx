@@ -9,10 +9,8 @@ vi.mock('../../src/hooks/useNavigateMethods', () => ({
 }));
 
 const mockedUseNavigate = vi.fn();
-vi.mock("react-router-dom", async () => {
-  const mod = await vi.importActual<typeof import("react-router-dom")>(
-    "react-router-dom"
-  );
+vi.mock('react-router-dom', async () => {
+  const mod = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
   return {
     ...mod,
     useNavigate: () => mockedUseNavigate,
@@ -29,8 +27,6 @@ describe('Pagination component', () => {
       createSearchParams: vi.fn(() => 'page=1'),
     }));
   });
-
-  
 
   it('renders correct number of page buttons', () => {
     render(
@@ -81,5 +77,5 @@ describe('Pagination component', () => {
     fireEvent.click(requiredBtn);
 
     expect(mockedUseNavigate).toHaveBeenCalledWith('/?page=2');
-  })
+  });
 });
