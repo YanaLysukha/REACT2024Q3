@@ -15,6 +15,7 @@ describe('Pagination component', () => {
     vi.clearAllMocks();
     vi.spyOn(useNavigateMethodsModule, 'useNavigateMethods').mockImplementation(() => ({
       getPageValue: vi.fn(() => 1),
+      createSearchParams: vi.fn(() => 'page=1'),
     }));
   });
 
@@ -43,6 +44,7 @@ describe('Pagination component', () => {
   it('disables the next btn on the last page', () => {
     vi.spyOn(useNavigateMethodsModule, 'useNavigateMethods').mockImplementation(() => ({
       getPageValue: vi.fn(() => TOTAL_PAGES),
+      createSearchParams: vi.fn(() => 'page=1'),
     }));
 
     render(
