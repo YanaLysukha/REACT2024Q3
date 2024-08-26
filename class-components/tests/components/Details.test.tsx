@@ -16,17 +16,17 @@ vi.mock('react-router-dom', async (importOriginal): Promise<object> => {
 
 vi.mock('../../src/services/getCharacters', () => ({
   getCharacterById: vi.fn().mockResolvedValue({
-    "_id": "5cd99d4bde30eff6ebccfbbe",
-    "name": "Adanel",
-    "wikiUrl": "http://lotr.wikia.com//wiki/Adanel",
-    "race": "Human",
-    "birth": null,
-    "gender": "Female",
-    "death": null,
-    "hair": null,
-    "height": null,
-    "realm": null,
-    "spouse": "Belemir"
+    _id: '5cd99d4bde30eff6ebccfbbe',
+    name: 'Adanel',
+    wikiUrl: 'http://lotr.wikia.com//wiki/Adanel',
+    race: 'Human',
+    birth: null,
+    gender: 'Female',
+    death: null,
+    hair: null,
+    height: null,
+    realm: null,
+    spouse: 'Belemir',
   }),
 }));
 
@@ -50,6 +50,6 @@ describe('Details component', () => {
       expect(screen.getByText('Human')).toBeInTheDocument();
       expect(screen.getByText('Female')).toBeInTheDocument();
       expect(screen.getByText('Belemir')).toBeInTheDocument();
-    })
+    });
   });
 });

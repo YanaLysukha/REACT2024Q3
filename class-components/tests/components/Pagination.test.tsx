@@ -1,12 +1,23 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import Pagination from '../../src/components/Pagination/Pagination';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import * as useNavigateMethodsModule from '../../src/hooks/useNavigateMethods';
 
 vi.mock('../../src/hooks/useNavigateMethods', () => ({
   useNavigateMethods: vi.fn(),
 }));
+
+const mockedUseNavigate = vi.fn();
+vi.mock("react-router-dom", async () => {
+  const mod = await vi.importActual<typeof import("react-router-dom")>(
+    "react-router-dom"
+  );
+  return {
+    ...mod,
+    useNavigate: () => mockedUseNavigate,
+  };
+});
 
 describe('Pagination component', () => {
   const TOTAL_PAGES = 10;
@@ -18,6 +29,8 @@ describe('Pagination component', () => {
       createSearchParams: vi.fn(() => 'page=1'),
     }));
   });
+
+  
 
   it('renders correct number of page buttons', () => {
     render(
@@ -56,4 +69,17 @@ describe('Pagination component', () => {
     const nextBtn = screen.getByRole('button', { name: />/i });
     expect(nextBtn).toBeDisabled();
   });
+
+  it('navigates to the correct page on button click', () => {
+    render(
+      <BrowserRouter>
+        <Pagination></Pagination>
+      </BrowserRouter>,
+    );
+
+    const requiredBtn = screen.getByRole('button', { name: /2/i });
+    fireEvent.click(requiredBtn);
+
+    expect(mockedUseNavigate).toHaveBeenCalledWith('/?page=2');
+  })
 });
