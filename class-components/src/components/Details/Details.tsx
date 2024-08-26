@@ -40,7 +40,7 @@ const Details = () => {
         <Loader data-testid="detailed-loader"></Loader>
       ) : (
         <div className={styles.container}>
-          <button className={styles.button} onClick={handleClose}>
+          <button data-testid="close-btn" className={styles.button} onClick={handleClose}>
             Close
           </button>
           <div className={styles.wrapper}>

@@ -3,6 +3,15 @@ import { BrowserRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import Details from '../../src/components/Details/Details';
 
+const mockedUseNavigate = vi.fn();
+vi.mock('react-router-dom', async () => {
+  const mod = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
+  return {
+    ...mod,
+    useNavigate: () => mockedUseNavigate,
+  };
+});
+
 vi.mock('react-router-dom', async (importOriginal): Promise<object> => {
   const actual = await importOriginal();
   return {
@@ -38,7 +47,7 @@ vi.mock('../../src/hooks/useNavigateMethods', () => ({
 }));
 
 describe('Details component', () => {
-  it('render component', async () => {
+  it('renders component', async () => {
     render(
       <BrowserRouter>
         <Details></Details>
