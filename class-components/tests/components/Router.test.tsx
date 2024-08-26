@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import MainPage from '../../src/pages/MainPage/MainPage';
-import { BrowserRouter, createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { createMemoryRouter, MemoryRouter, RouterProvider } from 'react-router-dom';
 import Details from '../../src/components/Details/Details';
 import ErrorPage from '../../src/pages/ErrorPage/ErrorPage';
 
@@ -24,7 +24,12 @@ describe('router', () => {
   ];
 
   it('render main page', () => {
-    render(<MainPage></MainPage>, { wrapper: BrowserRouter });
+    const route = '/';
+    render(
+      <MemoryRouter initialEntries={[route]}>
+        <MainPage></MainPage>
+      </MemoryRouter>,
+    );
 
     expect(screen.getByTestId('main-component')).toBeInTheDocument();
   });
@@ -33,16 +38,19 @@ describe('router', () => {
     const router = createMemoryRouter(routes, {
       initialEntries: ['/unknown-path'],
     });
+
     render(<RouterProvider router={router} />);
 
     expect(screen.getByText(/404/i)).toBeInTheDocument();
   });
 
   it('render details', () => {
-    const router = createMemoryRouter(routes, {
-      initialEntries: ['/item/5cd99d4bde30eff6ebccfbbe'],
-    });
-    render(<RouterProvider router={router}></RouterProvider>);
+    const route = '/item/5cd99d4bde30eff6ebccfbbe';
+    render(
+      <MemoryRouter initialEntries={[route]}>
+        <Details></Details>
+      </MemoryRouter>,
+    );
 
     expect(screen.getByTestId('details-component')).toBeInTheDocument();
   });
