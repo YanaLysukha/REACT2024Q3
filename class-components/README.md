@@ -15,3 +15,4 @@ Welcome to the Lord of the Rings Character Finder! This React application allows
 - Vitest
 - ESLint
 - Prettier
+- Husky
