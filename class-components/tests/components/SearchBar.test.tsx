@@ -5,10 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import SearchBar from '../../src/components/SearchBar/SearchBar';
 
 const mockedUseNavigate = vi.fn();
-vi.mock("react-router-dom", async () => {
-  const mod = await vi.importActual<typeof import("react-router-dom")>(
-    "react-router-dom"
-  );
+vi.mock('react-router-dom', async () => {
+  const mod = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
   return {
     ...mod,
     useNavigate: () => mockedUseNavigate,
@@ -47,7 +45,7 @@ describe('Search bar component', () => {
       <BrowserRouter>
         <SearchBar onSearch={mockOnSearch} updateSearchValue={mockUpdateSearchValue}></SearchBar>
       </BrowserRouter>,
-    )
+    );
 
     const input = screen.getByPlaceholderText('Find your favorite character...');
     const form = screen.getByRole('form');
@@ -57,5 +55,5 @@ describe('Search bar component', () => {
 
     expect(mockOnSearch).toHaveBeenCalledWith('Gandalf');
     expect(mockedUseNavigate).toHaveBeenCalledWith('/?page=1&search=Gandalf');
-  })
+  });
 });
