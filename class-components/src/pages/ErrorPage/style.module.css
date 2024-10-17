@@ -1,0 +1,38 @@
+.background {
+  background-image: url('../../assets/images/404-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  color: rgb(233, 202, 164);
+  font-family: 'Trajan Pro Bold';
+  padding: 100px 70px 0;
+}
+
+@media (max-width: 600px) {
+  .background {
+    padding: 100px 40px 0;
+  }
+
+  .text {
+    font-size: 0.9rem;
+  }
+}
+
+.wrapper {
+  max-width: 750px;
+}
+
+.title {
+  font-family: 'Ringbearer Medium';
+  font-style: normal;
+  color: rgba(237, 158, 97, 1);
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  letter-spacing: 0.8px;
+}
+
+.greetings {
+  margin-bottom: 20px;
+}

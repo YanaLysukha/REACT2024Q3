@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
+@font-face {
+  font-family: 'Ringbearer Medium';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local('Ringbearer Medium'),
+    url('../assets/fonts/RINGM___.woff') format('woff');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(18, 9, 6);
+  color: rgb(233, 202, 164);
+}

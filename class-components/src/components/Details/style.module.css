@@ -1,0 +1,59 @@
+.detailsWrapper {
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  flex: 1 1 0%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  background-image: url('../../assets/images/details-background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 50px;
+  height: 94vh;
+  font-family: 'EB Garamond', serif;
+  font-weight: 500;
+  color: rgb(28, 21, 19);
+  font-size: 1.5rem;
+  position: fixed;
+  width: 44%;
+  box-sizing: border-box;
+  border: 2px solid rgb(233, 202, 164);
+  border-radius: 30px;
+  transform: scale(1);
+  transition: all 0.4s ease;
+}
+
+.container:hover {
+  transform: scale(1.03);
+}
+
+.title {
+  font-family: 'Trajan Pro Bold';
+  color: #937043;
+  font-size: 2rem;
+}
+
+.button {
+  background-color: rgb(18, 9, 6);
+  color: rgb(233, 202, 164);
+  font-family: 'Ringbearer Medium';
+  border-radius: 30px;
+  border: none;
+  padding: 10px 15px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.button:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 0px 13px 2px rgba(237, 158, 97, 1);
+}
+
+.highlighted {
+  font-weight: 700;
+}
