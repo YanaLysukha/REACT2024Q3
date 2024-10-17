@@ -29,7 +29,6 @@ describe('Main page', () => {
 
   // change test
   it('updates search value in localStorage on search', async () => {
-
     render(
       <BrowserRouter>
         <MainPage></MainPage>
@@ -43,5 +42,5 @@ describe('Main page', () => {
     await waitFor(() => {
       expect(localStorage.getItem('value')).toBe('Gandalf');
     });
-  })
+  });
 });
