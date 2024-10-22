@@ -9,10 +9,7 @@ export const ThemeSwitcherBtn = () => {
   }
   const { darkTheme, toggleTheme } = context;
   return (
-    <button
-      onClick={toggleTheme}
-      className={`${styles.btn} ${darkTheme ? styles.light : styles.dark}`}
-    >
+    <button onClick={toggleTheme} className={`${styles.btn} ${darkTheme ? styles.light : styles.dark}`}>
       Change theme
     </button>
   );

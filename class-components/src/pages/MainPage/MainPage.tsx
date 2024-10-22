@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import ListView from '../../components/ListView/ListView';
 import { getCharacters, ICharacter } from '../../services/getCharacters';
@@ -7,6 +7,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import { Outlet, useLocation } from 'react-router-dom';
 import styles from './style.module.css';
 import { useNavigateMethods } from '../../hooks/useNavigateMethods';
+import { ThemeContext } from '../../context/themeProvider';
 
 const MainPage: React.FC = () => {
   const { getPageValue } = useNavigateMethods();
@@ -14,6 +15,11 @@ const MainPage: React.FC = () => {
   const [loader, setLoader] = useState<boolean>(false);
   const { search } = useLocation();
   const currentPage = useMemo(() => getPageValue(), [getPageValue]);
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('ThemeSwitcherBtn must be used within a ThemeProvider');
+  }
+  const { darkTheme } = context;
 
   const updateSearchValueInLS = (value: string) => {
     localStorage.setItem('value', value);
@@ -49,7 +55,7 @@ const MainPage: React.FC = () => {
           onSearch={() => fetchData(localStorage.getItem('value') ?? '')}
           updateSearchValue={updateSearchValueInLS}
         ></SearchBar>
-        <div className={styles.listWrapper}>
+        <div className={`${styles.listWrapper} ${darkTheme ? styles.dark : styles.light}`}>
           {!loader ? (
             <>
               <ListView characters={characters ?? []}></ListView>

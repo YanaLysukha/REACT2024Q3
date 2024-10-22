@@ -12,6 +12,17 @@
   justify-content: center;
 }
 
+.container.light {
+  background-image: url('../../assets/images/855462-the-lord-of-the-rings-the-rings-of-power-laptop-full-hd-1080p-hd-4k-wallpaper-image-background-photo-and-picture.jpg');
+  padding-bottom: 7.8rem;
+}
+
+@media (max-width: 720px) {
+  .container.light {
+    padding-bottom: 1rem;
+  }
+}
+
 .logo {
   position: absolute;
   top: 10px;
