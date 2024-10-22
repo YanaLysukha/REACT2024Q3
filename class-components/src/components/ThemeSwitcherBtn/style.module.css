@@ -1,0 +1,13 @@
+.btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.light {
+  background-color: blanchedalmond;
+}
+
+.dark {
+  background-color: teal;
+}

@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import logoIcon from '../../assets/images/LOTR-icon.svg';
 import styles from './style.module.css';
 import { useNavigate } from 'react-router-dom';
+import { ThemeSwitcherBtn } from '../ThemeSwitcherBtn/ThemeSwitcherBtn';
 
 interface ISearchBarProps {
   onSearch: (searchValue: string) => Promise<void>;
@@ -31,6 +32,7 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onSearch, updateSearchValue }) =
   return (
     <>
       <img src={logoIcon} className={styles.logo}></img>
+      <ThemeSwitcherBtn></ThemeSwitcherBtn>
       <div className={styles.container}>
         <form aria-label="form" className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.wrapper}>
