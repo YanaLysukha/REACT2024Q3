@@ -5,19 +5,33 @@
 }
 
 .button {
+  display: block;
   font-family: 'Trajan Pro Bold';
   font-size: 1rem;
   background-color: rgb(28, 21, 19);
   color: rgb(233, 202, 164);
   padding: 9px;
-  max-width: 40px;
+  width: 37px;
   border-radius: 5px;
   border: 1px solid rgb(233, 202, 164);
   cursor: pointer;
 }
 
+.light {
+  border: 2px solid rgb(28, 21, 19);
+  color: rgb(28, 21, 19);
+  background-color: #e1c197;
+  font-weight: 500;
+}
+
 .button:disabled {
   background-color: rgb(49, 44, 43);
+  pointer-events: none;
+}
+
+.button.light:disabled {
+  background-color: rgb(183, 158, 126);
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {

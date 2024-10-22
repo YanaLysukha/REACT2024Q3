@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getCharacterById, ICharacter } from '../../services/getCharacters';
 import styles from './style.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNavigateMethods } from '../../hooks/useNavigateMethods';
 import Loader from '../Loader/Loader';
+import { ThemeContext } from '../../context/themeProvider';
 
 const Details = () => {
   const [character, setCharacter] = useState<ICharacter | null>(null);
@@ -11,6 +12,11 @@ const Details = () => {
   const { itemId } = useParams<{ itemId: string }>();
   const navigate = useNavigate();
   const { getPageValue, createSearchParams } = useNavigateMethods();
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('ThemeSwitcherBtn must be used within a ThemeProvider');
+  }
+  const { darkTheme } = context;
 
   const getCharacterDetails = async () => {
     try {
@@ -35,11 +41,11 @@ const Details = () => {
   }, [itemId]);
 
   return (
-    <div className={styles.detailsWrapper} data-testid="details-component">
+    <div className={`${styles.detailsWrapper} ${darkTheme ? styles.detailsWrapper : styles.light}`} data-testid="details-component">
       {!isLoaded ? (
         <Loader data-testid="detailed-loader"></Loader>
       ) : (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${darkTheme ? styles.container : styles.light}`}>
           <button data-testid="close-btn" className={styles.button} onClick={handleClose}>
             Close
           </button>

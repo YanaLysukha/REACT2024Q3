@@ -22,7 +22,11 @@ const ListItem: React.FC<CharacterProps> = ({ character }) => {
   const { darkTheme } = context;
 
   return (
-    <div className={`${styles.wrapper} ${darkTheme ? styles.dark : styles.light}`} onClick={handleCharacterClick} data-testid="result-item">
+    <div
+      className={`${styles.wrapper} ${darkTheme ? styles.dark : styles.light}`}
+      onClick={handleCharacterClick}
+      data-testid="result-item"
+    >
       <h1 className={styles.title}>{character.name}</h1>
       <p>Race: {character.race}</p>
       <p>Gender: {character.gender}</p>

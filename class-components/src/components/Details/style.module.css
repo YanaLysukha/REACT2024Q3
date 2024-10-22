@@ -7,6 +7,10 @@
   justify-content: center;
 }
 
+.detailsWrapper.light {
+  background-color: rgb(233, 202, 164);
+}
+
 .container {
   background-image: url('../../assets/images/details-background.png');
   background-repeat: no-repeat;
@@ -25,6 +29,10 @@
   border-radius: 30px;
   transform: scale(1);
   transition: all 0.4s ease;
+}
+
+.container.light {
+  border: 2px solid rgb(28, 21, 19);
 }
 
 .container:hover {
